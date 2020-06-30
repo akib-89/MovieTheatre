@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@userWindow.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.UserController">
+   <children>
+      <AnchorPane fx:id="sidePanel" layoutY="-3.0" maxHeight="1080.0" maxWidth="250.0" prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: transparent;" translateX="-200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ToggleButton id="hamburger" fx:id="hamburger" layoutX="161.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleHamburger" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
+            <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="menu-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="home" styleClass="menu" text="Home" onMouseClicked="#handleMenuClicked"/>
+                  <Label fx:id="shows" styleClass="menu" text="Shows" onMouseClicked="#handleMenuClicked"/>
+                  <Label fx:id="bookTicket" styleClass="menu" text="Book Ticket" onMouseClicked="#handleMenuClicked"/>
+                  <Label fx:id="buyMovie" styleClass="menu" text="Buy Movie" onMouseClicked="#handleMenuClicked"/>
+                  <Label fx:id="contactUs" styleClass="menu" text="Contact us" onMouseClicked="#handleMenuClicked"/>
+                  <Label fx:id="help" styleClass="menu" text="Help" onMouseClicked="#handleMenuClicked"/>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

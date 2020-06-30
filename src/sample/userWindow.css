@@ -1,0 +1,37 @@
+.root{
+    -fx-background-image: url("home.jpg");
+    -fx-background-size: cover;
+}
+
+.menu-bar{
+    -fx-background-color: transparent;
+    -fx-pref-width: 200px;
+    -fx-padding: 0px 0px 50px 30px;
+    -fx-spacing: 5px;
+
+}
+.menu{
+    -fx-pref-height: 30px;
+    -fx-pref-width: 150px;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-scale: 3;
+    -fx-font-family: SansSerif;
+    -fx-padding: 10px 10px 0px 15px;
+    -fx-opacity: 0.5;
+}
+.menu:hover{
+    -fx-padding: 15px 15px 0px 25px;
+    -fx-opacity: 1;
+}
+#center{
+    -fx-background-image: url("home.jpg");
+    -fx-background-size: cover;
+}
+#hamburger{
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-radius: 200px;
+}

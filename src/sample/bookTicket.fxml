@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.BookTicket"
+            prefHeight="400.0" prefWidth="600.0">
+<content>
+    <GridPane hgap="10" vgap="10" alignment="TOP_CENTER" gridLinesVisible="true">
+        <Label text="Name" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField GridPane.rowIndex="0" GridPane.columnIndex="1" promptText="Lorem Impulse"/>
+        <ComboBox GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2">
+            <value>
+                <String fx:value="Select Movie"/>
+            </value>
+        </ComboBox>
+        <ComboBox GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Deluxe"/>
+                    <String fx:value="Royal"/>
+                    <String fx:value="Secondary"/>
+                    <String fx:value="primary"/>
+                </FXCollections>
+            </items>
+            <value>
+                <String fx:value="Select Hall"/>
+            </value>
+        </ComboBox>
+        <ComboBox GridPane.rowIndex="3" GridPane.columnIndex="0">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="10:30 AM"/>
+                    <String fx:value="12:00 PM"/>
+                    <String fx:value="2:00 PM"/>
+                    <String fx:value="3:30 PM"/>
+                    <String fx:value="5:30 PM"/>
+                    <String fx:value="7:00 PM"/>
+                    <String fx:value="9:00 PM"/>
+                </FXCollections>
+            </items>
+            <value>
+                <String fx:value="Select Time"/>
+            </value>
+        </ComboBox>
+        <DatePicker GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
+        <Spinner GridPane.rowIndex="4" GridPane.columnIndex="0" min="1" max="7"/>
+    </GridPane>
+</content>
+
+</DialogPane>
