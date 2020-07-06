@@ -1,55 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
 <?import javafx.collections.FXCollections?>
-<DialogPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.BookTicket"
-            prefHeight="400.0" prefWidth="600.0">
-<content>
-    <GridPane hgap="10" vgap="10" alignment="TOP_CENTER" gridLinesVisible="true">
-        <Label text="Name" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField GridPane.rowIndex="0" GridPane.columnIndex="1" promptText="Lorem Impulse"/>
-        <ComboBox GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2">
-            <value>
-                <String fx:value="Select Movie"/>
-            </value>
-        </ComboBox>
-        <ComboBox GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Deluxe"/>
-                    <String fx:value="Royal"/>
-                    <String fx:value="Secondary"/>
-                    <String fx:value="primary"/>
-                </FXCollections>
-            </items>
-            <value>
-                <String fx:value="Select Hall"/>
-            </value>
-        </ComboBox>
-        <ComboBox GridPane.rowIndex="3" GridPane.columnIndex="0">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="10:30 AM"/>
-                    <String fx:value="12:00 PM"/>
-                    <String fx:value="2:00 PM"/>
-                    <String fx:value="3:30 PM"/>
-                    <String fx:value="5:30 PM"/>
-                    <String fx:value="7:00 PM"/>
-                    <String fx:value="9:00 PM"/>
-                </FXCollections>
-            </items>
-            <value>
-                <String fx:value="Select Time"/>
-            </value>
-        </ComboBox>
-        <DatePicker GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
-        <Spinner GridPane.rowIndex="4" GridPane.columnIndex="0" min="1" max="7"/>
-    </GridPane>
-</content>
-
+<?import java.lang.String?>
+<DialogPane prefWidth="500" stylesheets="@bookTicket.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.BookTicket">
+    <content>
+        <AnchorPane prefHeight="400" prefWidth="500">
+            <TextField fx:id="nameTextField" id="nameInput" layoutX="226.0" layoutY="34.0" prefHeight="30.0"
+                       prefWidth="225.0" promptText="Full Name"/>
+            <Label id="name" layoutX="97.0" layoutY="26.0" text="Name" AnchorPane.topAnchor="26.0"/>
+            <ComboBox fx:id="movie" layoutX="12.0" layoutY="90.0" prefWidth="150.0">
+                <value>
+                    <String fx:value="Select Movie"/>
+                </value>
+            </ComboBox>
+            <ComboBox fx:id="hall" layoutX="175.0" layoutY="90.0" prefWidth="150.0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Royal Suit"/>
+                        <String fx:value="Suit"/>
+                        <String fx:value="Deluxe"/>
+                        <String fx:value="Secondary Hall"/>
+                        <String fx:value="Primary Hall"/>
+                    </FXCollections>
+                </items>
+                <value>
+                    <String fx:value="Select Hall"/>
+                </value>
+            </ComboBox>
+            <ComboBox fx:id="time" layoutX="275.0" layoutY="140.0" prefWidth="150.0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="10:00 AM"/>
+                        <String fx:value="12:00 PM"/>
+                        <String fx:value="02:30 PM"/>
+                        <String fx:value="05:30 PM"/>
+                        <String fx:value="08:00 PM"/>
+                    </FXCollections>
+                </items>
+                <value>
+                    <String fx:value="Select Time"/>
+                </value>
+            </ComboBox>
+            <Spinner fx:id="amount" layoutX="338.0" layoutY="90.0" prefWidth="150.0" min="1" max="7"
+                     promptText="Amount"/>
+            <DatePicker layoutX="75.0" layoutY="140.0" prefWidth="150.0" fx:id="datePicker"/>
+        </AnchorPane>
+    </content>
+      <ButtonType fx:constant="OK"/>
+      <ButtonType fx:constant="CANCEL"/>
 </DialogPane>

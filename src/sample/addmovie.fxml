@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.AddMovie"
+            prefHeight="400.0" prefWidth="600.0">
+    <content>
+        <GridPane hgap="10" vgap="10" alignment="TOP_CENTER">
+            <TextField GridPane.rowIndex="0" GridPane.columnIndex="0" fx:id="searchBox"
+                       promptText="Enter the Keyword" onKeyPressed="#handleSearchBox"/>
+            <Button fx:id="searchButton" text="Search" defaultButton="true"
+                    GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.halignment="RIGHT"
+                    onAction="#handleButtonPressed"/>
+            <ListView fx:id="movieList" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.rowSpan="3" prefWidth="300"/>
+            <TextArea fx:id="details" GridPane.rowIndex="2" GridPane.columnIndex="0" editable="false" wrapText="true" prefWidth="300"/>
+        </GridPane>
+    </content>
+    <ButtonType fx:constant="OK"/>
+    <ButtonType fx:constant="CANCEL"/>
+</DialogPane>

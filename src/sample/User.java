@@ -1,26 +1,23 @@
 package sample;
 
-import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserController implements Initializable {
+public class User implements Initializable {
 
     @FXML
     private AnchorPane sidePanel;
@@ -74,28 +71,35 @@ public class UserController implements Initializable {
             System.out.println("Shows selected");
         } else if (event.getSource().equals(bookTicket) || event.getSource().equals(buyMovie)){
             Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.initOwner(((Node)(event.getSource())).getScene().getWindow());
+            dialog.initOwner(((Node)event.getSource()).getScene().getWindow());
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("bookTicket.fxml"));
-
-            try{
-                dialog.getDialogPane().setContent(loader.load());
-            }catch (Exception e){
-                //don't do anything
-                System.out.println("could not load the file");
-                e.printStackTrace();
+            try {
+                dialog.setDialogPane(loader.load());
+            }catch (IOException exception){
+                System.out.println("exception found");
+                exception.printStackTrace();
             }
-
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            BookTicket controller = loader.getController();
+            dialog.getDialogPane().lookupButton(ButtonType.OK)
+                    .disableProperty().bind(controller.getIsValidBinding().not());
             Optional<ButtonType> result = dialog.showAndWait();
+
             if (result.isPresent() && result.get().equals(ButtonType.OK)){
-                //user confirmed the booking
-                System.out.println("confirmed");
-            } else if (result.isPresent() && result.get().equals(ButtonType.CANCEL)){
-                System.out.println("cancelled from the window");
-            }
-            System.out.println("hudai");
+                if (controller.bookTicket()){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Successful!!");
+                    alert.setContentText("Your booking to the show is confirmed\n" +
+                            "Enjoy your movie");
+                    alert.showAndWait();
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Error!!");
+                    alert.setContentText("There might be a enough booking to the schedule\n" +
+                            "Please try again in another schedule");
+                    alert.showAndWait();
+                }
+          }
         } else if (event.getSource().equals(contactUs)){
             System.out.println("Contact Us pressed");
         } else if (event.getSource().equals(help)){
