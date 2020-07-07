@@ -7,33 +7,46 @@ import java.util.Map;
 import java.util.Timer;
 
 public class Hall {
-    private final String hallType;
-    private final int capacity;
+    //this is an approach inspired from the singleTone class design
+    private static final Hall royal = new Hall(5);
+    private static final Hall suit = new Hall(5);
+    private static final Hall deluxe = new Hall(7);
+    private static final Hall secondary = new Hall(10);
+    private static final Hall primary = new Hall(15);
+
     //we will maintain a map to map the booking with time
     private final Map<Show , Integer> booked = new HashMap<>();
 
-    public Hall(String hallType) {
-        this.hallType = hallType;
-        switch (hallType.toLowerCase()) {
-            case "royal suit":
-                this.capacity = 5;
-                break;
-            case "suit":
-            case "deluxe":
-                this.capacity = 7;
-                break;
-            case "secondary hall":
-            case "primary hall":
-                this.capacity = 10;
-                break;
-            default:
-                this.capacity = 0;
-        }
+    private final int capacity;
+
+    private Hall(int capacity) {
+        this.capacity = capacity;
     }
 
-    public boolean book(LocalDateTime time,Movie movie, int a){
-        //this will return the current booking of the time stamp;
-        Show show = new Show(time,movie);
+    public  static Hall ROYAL() {
+        return royal;
+    }
+
+    public static Hall SUIT() {
+        return suit;
+    }
+
+    public static Hall DELUXE() {
+        return deluxe;
+    }
+
+    public static Hall SECONDARY() {
+        return secondary;
+    }
+
+    public static Hall PRIMARY() {
+        return primary;
+    }
+
+    public boolean book(LocalDateTime time, Movie movie, int a){
+        Show show = new Show(time, movie);
+
+        //this will return the current booking of that particular show
         boolean contain = booked.containsKey(show);
         if (contain){
             int previous = booked.get(show);
@@ -53,23 +66,10 @@ public class Hall {
     }
 
 
-    public String getHallType() {
-        return hallType;
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this){
-            return true;
-        }
-        if (obj instanceof Hall){
-            return this.hallType.equals(((Hall)obj).hallType);
-        }
 
-        return false;
-    }
 
-    private class Show{
+    private static class Show{
         private final LocalDateTime time;
         private final Movie movie;
 
@@ -90,6 +90,11 @@ public class Hall {
 
             return false;
 
+        }
+
+        @Override
+        public int hashCode() {
+            return this.time.hashCode() + this.movie.hashCode();
         }
     }
 

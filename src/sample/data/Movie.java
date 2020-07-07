@@ -17,7 +17,14 @@ public class Movie {
     private final List<String> stars;
     private double rating;
 
-    public Movie(String name, int releaseYear, int runTime, String description, String genre, String director, String stars, double rating) {
+    public Movie(String name,
+                 int releaseYear,
+                 int runTime,
+                 String description,
+                 String genre,
+                 String director,
+                 String stars,
+                 double rating) {
         this.name = name;
         this.releaseYear = releaseYear;
         this.runTime = runTime;
@@ -107,6 +114,11 @@ public class Movie {
         }
 
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.name.hashCode() + this.releaseYear;
     }
 
     @Override

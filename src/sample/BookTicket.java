@@ -2,10 +2,8 @@ package sample;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.util.Callback;
 import sample.data.Booking;
 import sample.data.Loader;
 import sample.data.Movie;
@@ -60,7 +58,19 @@ public class BookTicket {
                         && datePicker.getValue() != null;
             }
         };
-
+        datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(DatePicker datePicker) {
+                return new DateCell(){
+                    @Override
+                    public void updateItem(LocalDate localDate, boolean b) {
+                        super.updateItem(localDate, b);
+                        LocalDate today = LocalDate.now();
+                        setDisable(b || localDate.compareTo(today) < 0);
+                    }
+                };
+            }
+        });
     }
 
     public boolean bookTicket(){
@@ -72,8 +82,13 @@ public class BookTicket {
         String timeString = time.getSelectionModel().getSelectedItem().toLowerCase();
         LocalTime time = LocalTime.parse(timeString, DateTimeFormatter.ofPattern("hh:mm a"));
 
-        Booking booking = new Booking(name,number);
-        return booking.book(hall.getSelectionModel().getSelectedItem(),time.atDate(date),movie);
+        Booking booking = new Booking(name,number,time.atDate(date),movie,hall.getSelectionModel().getSelectedItem());
+        if (booking.book()){
+            Loader.getInstance().addBooking(booking);
+            return true;
+        }else{
+            return false;
+        }
 
     }
 
